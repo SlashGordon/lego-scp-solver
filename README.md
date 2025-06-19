@@ -2,6 +2,9 @@
 
 A Go project that uses the lego ACME client library with a custom challenge solver for webroot method using SCP upload.
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Go Report Card](https://goreportcard.com/badge/github.com/SlashGordon/lego-scp-solver)](https://goreportcard.com/report/github.com/SlashGordon/lego-scp-solver)
+
 ## Setup
 
 1. Set environment variables:
