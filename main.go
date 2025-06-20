@@ -59,23 +59,35 @@ func init() {
 	rootCmd.Flags().String("scp-webroot", "", "Remote webroot path for challenge files")
 	rootCmd.Flags().String("cert-path", ".", "Directory to save certificates")
 	
-	viper.BindPFlag("email", rootCmd.Flags().Lookup("email"))
-	viper.BindPFlag("domains", rootCmd.Flags().Lookup("domains"))
-	viper.BindPFlag("account.key", rootCmd.Flags().Lookup("account-key"))
-	viper.BindPFlag("scp.host", rootCmd.Flags().Lookup("scp-host"))
-	viper.BindPFlag("scp.user", rootCmd.Flags().Lookup("scp-user"))
-	viper.BindPFlag("scp.keypath", rootCmd.Flags().Lookup("scp-key"))
-	viper.BindPFlag("scp.webroot", rootCmd.Flags().Lookup("scp-webroot"))
-	viper.BindPFlag("cert.path", rootCmd.Flags().Lookup("cert-path"))
+	// Bind flags to viper
+	bindFlags()
 	
-	viper.BindEnv("email", "LEGO_SCP_EMAIL")
-	viper.BindEnv("domains", "LEGO_SCP_DOMAINS")
-	viper.BindEnv("account.key", "LEGO_SCP_ACCOUNT_KEY")
-	viper.BindEnv("scp.host", "LEGO_SCP_HOST")
-	viper.BindEnv("scp.user", "LEGO_SCP_USER")
-	viper.BindEnv("scp.keypath", "LEGO_SCP_KEY_PATH")
-	viper.BindEnv("scp.webroot", "LEGO_SCP_WEBROOT_PATH")
-	viper.BindEnv("cert.path", "LEGO_SCP_CERT_PATH")
+	// Bind environment variables
+	bindEnvVars()
+}
+
+func bindFlags() {
+	// Ignore errors since these operations rarely fail
+	_ = viper.BindPFlag("email", rootCmd.Flags().Lookup("email"))
+	_ = viper.BindPFlag("domains", rootCmd.Flags().Lookup("domains"))
+	_ = viper.BindPFlag("account.key", rootCmd.Flags().Lookup("account-key"))
+	_ = viper.BindPFlag("scp.host", rootCmd.Flags().Lookup("scp-host"))
+	_ = viper.BindPFlag("scp.user", rootCmd.Flags().Lookup("scp-user"))
+	_ = viper.BindPFlag("scp.keypath", rootCmd.Flags().Lookup("scp-key"))
+	_ = viper.BindPFlag("scp.webroot", rootCmd.Flags().Lookup("scp-webroot"))
+	_ = viper.BindPFlag("cert.path", rootCmd.Flags().Lookup("cert-path"))
+}
+
+func bindEnvVars() {
+	// Ignore errors since these operations rarely fail
+	_ = viper.BindEnv("email", "LEGO_SCP_EMAIL")
+	_ = viper.BindEnv("domains", "LEGO_SCP_DOMAINS")
+	_ = viper.BindEnv("account.key", "LEGO_SCP_ACCOUNT_KEY")
+	_ = viper.BindEnv("scp.host", "LEGO_SCP_HOST")
+	_ = viper.BindEnv("scp.user", "LEGO_SCP_USER")
+	_ = viper.BindEnv("scp.keypath", "LEGO_SCP_KEY_PATH")
+	_ = viper.BindEnv("scp.webroot", "LEGO_SCP_WEBROOT_PATH")
+	_ = viper.BindEnv("cert.path", "LEGO_SCP_CERT_PATH")
 }
 
 func runCertificate(cmd *cobra.Command, args []string) {
